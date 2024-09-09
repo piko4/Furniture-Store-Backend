@@ -15,19 +15,29 @@ public class ProductController {
     @Autowired
     ProductService productService;
 
-    @GetMapping("/getAll")
+    //    -------------- * * * Fetch All Products * * * --------------
+
+    @GetMapping("getAll")
     public List<Product> getAllProducts() {
         return productService.getAllProducts();
     }
 
-    @GetMapping("/getById/{id}")
+    //    -------------- * * * Fetch All Products By Category * * * --------------
+    @GetMapping("getAllByCategory/{category}")
+    public List<Product> getAllProductsByCategory(@PathVariable String category) {
+        return productService.getAllByCategory(category);
+    }
+
+    //    -------------- * * * Fetch a Product By Id * * * --------------
+    @GetMapping("getById/{id}")
     public ResponseEntity<Product> getProductById(@PathVariable Long id) {
         return ResponseEntity.ok(productService.getProductById(id));
     }
 
-    @PostMapping("/create")
-    public ResponseEntity<String> createProduct(@RequestBody Product product){
-        return ResponseEntity.ok( productService.setProduct(product));
+    //    -------------- * * * for creating new Product * * * --------------
+    @PostMapping("create")
+    public ResponseEntity<String> createProduct(@RequestBody Product product) {
+        return ResponseEntity.ok(productService.setProduct(product));
 
     }
 }

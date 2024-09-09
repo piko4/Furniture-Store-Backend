@@ -17,13 +17,14 @@ public class UserController {
         return userService.createUser(user);
     }
 
-    @GetMapping("/username/{username}")
+    @GetMapping("getBy/username/{username}")
     public ResponseEntity<User> getUserByUsername(@PathVariable String username){
-         return ResponseEntity.ok(userService.findUserByUsername(username));
+        return ResponseEntity.ok(userService.findUserByUsername(username));
     }
-    @GetMapping("/email/{email}")
-    public ResponseEntity<User> getUserByEmail(@PathVariable String email){
-        return ResponseEntity.ok(userService.findUserByEmail(email));
+
+    @GetMapping("getBy/emailAndName/{email}/{username}")
+    public ResponseEntity<User> getUserByEmailAndName(@PathVariable String email,@PathVariable String username){
+        return ResponseEntity.ok(userService.findUserByEmailAndName(email,username));
     }
 
 }
