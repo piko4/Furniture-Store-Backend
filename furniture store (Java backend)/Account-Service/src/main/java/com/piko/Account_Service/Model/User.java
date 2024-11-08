@@ -19,6 +19,7 @@ public class User {
     private String password;
     private String address;
 
+
     @OneToOne(cascade = CascadeType.ALL)
     private Cart cart;
 
@@ -27,4 +28,5 @@ public class User {
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "user")
     private List<Order> orders=new ArrayList<>();
+
 }

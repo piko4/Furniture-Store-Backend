@@ -1,12 +1,10 @@
 package com.piko.Product_Service.Model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import lombok.Data;
 
 import java.math.BigDecimal;
+import java.util.List;
 
 @Entity
 @Data
@@ -20,5 +18,8 @@ public class Product {
     private String category;
     private BigDecimal price;
     private int quantityInStock;
+
+    @OneToMany(mappedBy = "product", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    private List<Review> reviews;
 
 }
