@@ -9,14 +9,24 @@
         <outputRelativeToContentRoot value="true" />
         <module name="api-gateway" />
         <module name="Account-Service" />
-        <module name="Product-Service" />
         <module name="service-registry" />
+        <module name="Product-Service" />
+      </profile>
+      <profile name="Annotation profile for Community-Service" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <processorPath useClasspath="false">
+          <entry name="$MAVEN_REPOSITORY$/org/projectlombok/lombok/unknown/lombok-unknown.jar" />
+        </processorPath>
+        <module name="Community-Service" />
       </profile>
     </annotationProcessing>
   </component>
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
       <module name="Account-Service" options="-parameters" />
+      <module name="Community-Service" options="-parameters" />
       <module name="Product-Service" options="-parameters" />
       <module name="api-gateway" options="-parameters" />
       <module name="service-registry" options="-parameters" />
