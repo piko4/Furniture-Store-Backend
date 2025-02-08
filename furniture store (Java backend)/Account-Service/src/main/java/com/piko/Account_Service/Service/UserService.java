@@ -17,6 +17,7 @@ public class UserService {
 
     public String createUser(User user) {
          userRepository.save(user);
+        System.out.println("user account created !!");
         return "created" ;
     }
 
