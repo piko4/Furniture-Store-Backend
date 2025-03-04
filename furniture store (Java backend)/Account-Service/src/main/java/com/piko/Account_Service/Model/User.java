@@ -1,5 +1,7 @@
 package com.piko.Account_Service.Model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.Data;
 
@@ -19,14 +21,35 @@ public class User {
     private String password;
     private String address;
 
-
+    //------------------------------cart--------------------------
     @OneToOne(cascade = CascadeType.ALL)
     private Cart cart;
 
-    @OneToOne(cascade = CascadeType.ALL)
-    private Wishlist wishlist;
+    public Cart getCart() {
+        return cart;
+    }
 
+    public void setCart(Cart cart) {
+        this.cart = cart;
+    }
+
+    //----------------------------wish list--------------------
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "wishlist_id")
+    private Wishlist wishlist; //--favorite
+
+
+    // Getters and setters...
+    public Wishlist getWishlist() {
+        return wishlist;
+    }
+
+    public void setWishlist(Wishlist wishlist) {
+        this.wishlist = wishlist;
+    }
+
+    //---------------------------order----------------------
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "user")
-    private List<Order> orders=new ArrayList<>();
+    private List<Order> orders = new ArrayList<>();
 
 }

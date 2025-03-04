@@ -52,14 +52,16 @@ public class UserController {
 //-------------------------------- used for fetching user session--------------------
     @GetMapping("/user")
     public ResponseEntity<?> getUser(HttpSession session) {
-        User user = (User) session.getAttribute("user");
-
-        if (user == null) {
+        // Instead of returning the user stored in the session,
+        // get the user ID from the session and re-fetch the user from the database.
+        User sessionUser = (User) session.getAttribute("user");
+        if (sessionUser == null) {
             System.out.println("User not found in session");
             return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Not logged in");
         }
-
-        return ResponseEntity.ok(user);
+        // Fetch updated user from the database
+        User updatedUser = userService.findById(sessionUser.getId());
+        return ResponseEntity.ok(updatedUser);
     }
 //-----------------------------------for logout---------------------------------------
     @PostMapping("/logout")
