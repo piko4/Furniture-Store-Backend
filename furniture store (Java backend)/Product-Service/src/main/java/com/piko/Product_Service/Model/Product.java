@@ -17,6 +17,7 @@ public class Product {
     private String imageURL;
     private String category;
     private BigDecimal price;
+    private BigDecimal quantity; //-----product quantities for cart
     private int quantityInStock;
 //    private boolean bestseller=false;
 

@@ -48,8 +48,5 @@ public class User {
         this.wishlist = wishlist;
     }
 
-    //---------------------------order----------------------
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "user")
-    private List<Order> orders = new ArrayList<>();
 
 }
